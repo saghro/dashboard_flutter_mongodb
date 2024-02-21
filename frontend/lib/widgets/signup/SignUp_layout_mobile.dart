@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:frontend/screen/SignIn.dart';
+import 'package:frontend/screen/signIn_screen.dart';
 import 'dart:convert';
 import 'package:frontend/model/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUpLayoutMobile extends StatefulWidget {
+  const SignUpLayoutMobile({Key? key}) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpLayoutMobile> createState() => _SignUpLayoutMobileState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpLayoutMobileState extends State<SignUpLayoutMobile> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController confirmPasswordController;
   late User user;
@@ -67,13 +67,12 @@ class _SignUpState extends State<SignUp> {
             top: 0,
             child: SvgPicture.asset(
               'images/top.svg',
-              width: screenWidth,
-              height: screenHeight * 0.3,
+
             ),
           ),
           Container(
-            width: isSmallScreen? screenWidth/2: screenWidth,
-            height: isSmallScreen?  screenHeight/2: screenHeight,
+            height: screenHeight,
+            width: screenWidth,
             alignment: Alignment.center,
             child: Form(
               key: _formKey,
@@ -240,7 +239,7 @@ class _SignUpState extends State<SignUp> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SignIn()));
+                                      builder: (context) => LoginScreen()));
                             },
                             child: const Text(
                               "SignIn",

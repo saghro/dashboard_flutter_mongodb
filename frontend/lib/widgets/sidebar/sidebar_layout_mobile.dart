@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/screen/HomePage.dart';
-import 'package:frontend/screen/StudentPage.dart';
-import 'package:frontend/screen/CoursPage.dart';
-import 'package:frontend/screen/SignIn.dart';
+import 'package:frontend/screen/Cours_screen.dart';
+import 'package:frontend/screen/Home_screen.dart';
+import 'package:frontend/screen/StudentScreen.dart';
+import 'package:frontend/screen/signIn_screen.dart';
 
-class Dashbord extends StatefulWidget {
-  const Dashbord({Key? key}) : super(key: key);
+class SideBarLayoutMobile extends StatefulWidget {
+  const SideBarLayoutMobile({Key? key}) : super(key: key);
 
   @override
-  State<Dashbord> createState() => _DashbordState();
+  State<SideBarLayoutMobile> createState() => _SideBarLayoutMobileState();
 }
 
-class _DashbordState extends State<Dashbord> {
+class _SideBarLayoutMobileState extends State<SideBarLayoutMobile> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    StudentPage(),
-    CoursPage(),
+  static List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
+    StudentScreen(),
+    CoursScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -32,25 +32,21 @@ class _DashbordState extends State<Dashbord> {
       appBar: AppBar(
         title: const Text('Dashboard'),
       ),
-      body: Stack(
-        children: [
-          Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
-          ),
-        ],
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             const DrawerHeader(
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.lightBlueAccent,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children:  [
-                   CircleAvatar(
+                children: [
+                  CircleAvatar(
                     backgroundColor: Color(0xffE6E6E6),
                     radius: 50,
                     child: Icon(
@@ -64,36 +60,36 @@ class _DashbordState extends State<Dashbord> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
+              leading: Icon(Icons.home),
+              title: Text('Home'),
               onTap: () {
                 Navigator.pop(context);
                 _onItemTapped(0);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.school),
-              title: const Text('Students'),
+              leading: Icon(Icons.school),
+              title: Text('Students'),
               onTap: () {
                 Navigator.pop(context);
                 _onItemTapped(1);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text('Courses'),
+              leading: Icon(Icons.book),
+              title: Text('Courses'),
               onTap: () {
                 Navigator.pop(context);
                 _onItemTapped(2);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('Logout'),
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => const SignIn()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                       (route) => false,
                 );
               },
